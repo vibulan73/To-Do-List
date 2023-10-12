@@ -1,16 +1,15 @@
 // import logo from './logo.svg';
-import './App.css';
+import Content from './Content';
+import Footer from './Footer';
+import Header from './Header';
 
 function App() {
-  function handleNameChange(){
-    const names = ["Earth","Grow","Give"];
-    const int =Math.floor(Math.random()*3);
-    return names[int]
-  }
+ 
   return (
-    <div>
-      Subscribeeee
-      <p>let's {handleNameChange()} money</p>
+    <div className='App'>
+      <Header />
+      <Content />
+      <Footer />
     </div>
   );
 }
