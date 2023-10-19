@@ -1,41 +1,42 @@
 import React from 'react'
-import { useState } from 'react';
-import { FaRegTrashAlt } from 'react-icons/fa';
+// import { useState } from 'react';
+// import { FaRegTrashAlt } from 'react-icons/fa';
+import ItemsList from './ItemsList';
 //can't use useState hooks inside the class components
 //can't use useState inside condition like if clause
-const Content = () => {
-    const [items, setItems] = useState(
-        [
-            {
-                id: 1,
-                checked: true,
-                item: "Practice Coding"
+const Content = ({ items, handleCheck, handleDelete }) => {
+    // const [items, setItems] = useState(
+    //     [
+    //         {
+    //             id: 1,
+    //             checked: true,
+    //             item: "Practice Coding"
 
-            },
-            {
-                id: 2,
-                checked: false,
-                item: "Play Cricket"
+    //         },
+    //         {
+    //             id: 2,
+    //             checked: false,
+    //             item: "Play Cricket"
 
-            },
-            {
-                id: 3,
-                checked: true,
-                item: "Read book"
+    //         },
+    //         {
+    //             id: 3,
+    //             checked: true,
+    //             item: "Read book"
 
-            }
-        ]);
-    const handleCheck = (id) => {
-        const listItems = items.map((item)=>item.id===id ? {...item, checked:!item.checked} : item) 
-        setItems(listItems)
-        // console.log('id: ${id}')
-        localStorage.setItem("todo_list", JSON.stringify(listItems))
-    }
-    
-    const handleDelete = (id) => {
-        const listItems = items.filter((item)=>item.id!==id) //? {...item, checked:!item.checked} : item) 
-        setItems(listItems)
-    }
+    //         }
+    //     ]);
+    // const handleCheck = (id) => {
+    //     const listItems = items.map((item) => item.id === id ? { ...item, checked: !item.checked } : item)
+    //     setItems(listItems)
+    //     // console.log('id: ${id}')
+    //     localStorage.setItem("todo_list", JSON.stringify(listItems))
+    // }
+
+    // const handleDelete = (id) => {
+    //     const listItems = items.filter((item) => item.id !== id) //? {...item, checked:!item.checked} : item) 
+    //     setItems(listItems)
+    // }
     // const [name, setName] = useState('Earn');
 
     //     function handleNameChange(){
@@ -67,28 +68,35 @@ const Content = () => {
     return (
         <main>
             {(items.length) ? (
-            <ul>
-                {items.map((item) => (
-                    <li className='item' key={item.id}>
-                        <input
-                            type="checkbox"
-                            onChange={() => handleCheck(item.id)}
-                            checked={item.checked}
-                        />
-                        <label 
-                            style={(item.checked) ? {textDecoration:'line-through'} : null}
-                            onDoubleClick={() => handleCheck(item.id)}>{item.item}</label>
-                        {/* <button>Delete</button> */}
-                        <FaRegTrashAlt
-                            role="button"
-                            onClick={() =>handleDelete(item.id)}
-                            tabIndex="0"
-                        />
-                    </li>
-                ))}
+                // <ul>
+                //     {items.map((item) => (
+                //         <li className='item' key={item.id}>
+                //             <input
+                //                 type="checkbox"
+                //                 onChange={() => handleCheck(item.id)}
+                //                 checked={item.checked}
+                //             />
+                //             <label
+                //                 style={(item.checked) ? { textDecoration: 'line-through' } : null}
+                //                 onDoubleClick={() => handleCheck(item.id)}>{item.item}</label>
+                //             {/* <button>Delete</button> */}
+                //             <FaRegTrashAlt
+                //                 role="button"
+                //                 onClick={() => handleDelete(item.id)}
+                //                 tabIndex="0"
+                //             />
+                //         </li>
+                //     ))}
 
-            </ul>
-            ) : (<p style={{ marginTop: "2rem" , color:"green", fontFamily:"initial"}}>Your list is empty</p>)
+                // </ul>
+                <ItemsList
+                    items={items}
+                    // setItems = {setItems}
+                    handleCheck={handleCheck}
+                    handleDelete={handleDelete}
+                />
+
+            ) : (<p style={{ marginTop: "2rem", color: "green", fontFamily: "initial" }}>Your list is empty</p>)
             }
 
             {/* // <p onDoubleClick={() => handleClick2('Vibu')}>Lets {handleNameChange()} Money</p>
